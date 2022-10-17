@@ -1,97 +1,117 @@
-#include "LinkedList.h"
-#include "Node.h"
-#include <sstream>
-#include <limits>
 #include <iostream>
-#include <string>
+#include <limits>
+#include "LinkedList.h"
 #include <vector>
+#include <sstream>
+#include "Node.h"
+#include <string>
+
+
 
 using namespace std;
 
 int main(){
 
-    //Executing main
     vector <string> input;
-    string str;
+    string letters;
+    vector <int> numbers;
     const char space=' ';
-    vector <int> parameters;
-    LinkedList list;
+    LinkedList L;
+    int num;
 
-    //Getting input
-    getline(cin,str); /*now oding string stream and breaking into words*/  stringstream stream (str);
-
-    while (getline(stream,str,space)){
-        //[pushing input words back
-        input.push_back(str);
+    
+    getline(cin,letters); 
+    stringstream ss (letters); 
+    
+     while (getline(ss,letters,space)){
+    
+        input.push_back(letters);
     }
 
-    //size variable
     int size=input.size();
-
-    //setting ints in a vector
-    for (int i=0; i<size-3; i++){
-        int temp=stoi(input[i]);
-        parameters.push_back(temp);
+ 
+    for (int i = 0; i<size-3; i++){
+        num = stoi(input[i]);
+        
+        numbers.push_back(num);
+    }
+  
+    int parameter = stoi(input[size-2]);
+    int parameter2 = stoi(input[size-1]);
+    string yo = input[size-3];
+    
+    if (yo == "AP"){
+        cout << "";
+        L.addFront(numbers[3]);
+        L.addFront(numbers[2]);
+        L.addFront(numbers[1]);
+        L.addFront(numbers[0]);
+        L.addAtPosition(parameter, parameter2);
+        L.printItems();
+    }
+    if (yo == "DP"){
+        cout << "";
+        L.addFront(numbers[3]);
+        L.addFront(numbers[2]);
+        L.addFront(numbers[1]);
+        L.addFront(numbers[0]);
+        L.deletePosition(parameter);
+        L.printItems();
+    }
+    if (yo == "GI"){
+        cout << "";
+        L.addFront(numbers[3]);
+        L.addFront(numbers[2]);
+        L.addFront(numbers[1]);
+        L.addFront(numbers[0]);
+        L.getItem(parameter);
+        L.printItems();
+    }
+    if (yo == "AF"){
+        cout << "";
+        L.addFront(numbers[3]);
+        L.addFront(numbers[2]);
+        L.addFront(numbers[1]);
+        L.addFront(numbers[0]);
+        L.addFront(parameter);
+        L.printItems();
+    }
+    if (yo == "AE"){
+        cout << "";
+        L.addFront(numbers[3]);
+        L.addFront(numbers[2]);
+        L.addFront(numbers[1]);
+        L.addFront(numbers[0]);
+        L.addEnd(parameter);
+        L.printItems();
+    }
+    if (yo == "S"){
+        cout << "";
+        L.addFront(numbers[3]);
+        L.addFront(numbers[2]);
+        L.addFront(numbers[1]);
+        L.addFront(numbers[0]);
+        L.search(parameter);
+        L.printItems();
+    }
+    if (yo == "DF"){
+        cout << "";
+        L.addFront(numbers[3]);
+        L.addFront(numbers[2]);
+        L.addFront(numbers[1]);
+        L.addFront(numbers[0]);
+        L.deleteFront();
+        L.printItems();
+    }
+    if (yo == "DE"){
+        cout << "";
+        L.addFront(numbers[3]);
+        L.addFront(numbers[2]);
+        L.addFront(numbers[1]);
+        L.addFront(numbers[0]);
+        L.deleteEnd();
+        L.printItems();
     }
 
-
-    for (auto &i:parameters){
-        //adding to end first
-        list.addEnd(i);
-    }
-
-    //Executing commands
-    string temp0=input[size-3];
-    string function=temp0;
-    int temp1=stoi(input[size-2]);
-    int parameter1=temp1;
-    int temp2=stoi(input[size-1]);
-    int parameter2=temp2;
-
-
-    //vector addition of commands
-    vector <string> commands;
-
-    commands.push_back("AF");commands.push_back("AE");
-    commands.push_back("AP");commands.push_back("S");
-    commands.push_back("DF");commands.push_back("DE");
-    commands.push_back("DP");commands.push_back("GI");
-
-
-
-    //for the various commands
-
-    if (function==commands[7]){
-        list.getItem(parameter1);
-    }
-    if (function==commands[3]){
-        list.search(parameter1);
-    }
-    if (function==commands[6]){
-        list.deletePosition(parameter1);
-    }
-    if (function==commands[1]){
-        list.addEnd(parameter1);
-    }
-    if (function==commands[4]){
-        list.deleteFront();
-    }
-
-    if (function==commands[2]){
-        list.addAtPosition(parameter1, parameter2);
-    }
-    if (function==commands[5]){
-        list.deleteEnd();
-    }
-
-    if (function==commands[0]){
-        list.addFront(parameter1);
-    }
-
-
-
-    //Printing and returning
-    list.printItems();
     return 0;
 }
-//End of function
